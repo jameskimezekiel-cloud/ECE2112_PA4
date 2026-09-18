@@ -4,7 +4,7 @@
 ### Experiment 4: Data Wrangling and Data Visualization
 **Submitted by:** James, Kim Ezekiel G.| 2ECE-A | 09/09/2026
 
-This notebook works with a board-exam-style student dataset (`board2.xlsx`) using `pandas` for data wrangling and `matplotlib` for visualization. It covers filtering data into targeted DataFrames, computing group averages, and building a summary bar-chart figure.
+##### This notebook works with a board-exam-style student dataset (`board2.xlsx`) using `pandas` for data wrangling and `matplotlib` for visualization. It covers filtering data into targeted DataFrames, computing group averages, and building a summary bar-chart figure.
 ---
 
 ## 📋 Table of Contents
