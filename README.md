@@ -79,7 +79,19 @@ display(VisComm)
 print("Number of rows:", len(VisComm))
 ```
 
-**Output:** A DataFrame limited to `Name, Gender, Math, Electronics, Average` for students meeting both conditions, followed by a printed row count (values depend on the contents of `board2.xlsx`).
+**Output:**
+
+| Index | Name | Gender | Math | Electronics | Average |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **10** | S11 | Female | 48 | 56 | 54.75 |
+| **11** | S12 | Male | 89 | 67 | 76.00 |
+| **17** | S18 | Male | 81 | 40 | 63.50 |
+| **21** | S22 | Female | 64 | 39 | 62.50 |
+| **27** | S28 | Male | 85 | 53 | 67.75 |
+
+```text
+Number of rows in VisComm: 5
+```
 
 ---
 
@@ -103,7 +115,27 @@ print("VisFemale students with Average >= 60:")
 display(VisFemale_60)
 ```
 
-**Output:** The full `VisFemale` DataFrame, followed by a separately named subset (`VisFemale_60`) showing only rows meeting the `Average >= 60` threshold, with the original `VisFemale` left unmodified.
+**Output:**
+
+**VisFemale DataFrame:**
+| Index | Name | Track | GEAS | Electronics | Average |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **5** | S6 | Microelectronics | 86 | 45 | 75.50 |
+| **10** | S11 | Communication | 48 | 56 | 54.75 |
+| **20** | S21 | Microelectronics | 68 | 51 | 68.50 |
+| **21** | S22 | Communication | 89 | 39 | 62.50 |
+| **23** | S24 | Microelectronics | 60 | 45 | 57.75 |
+| **25** | S26 | Instrumentation | 83 | 47 | 65.75 |
+
+**VisFemale Students with Average >= 60:**
+| Index | Name | Track | GEAS | Electronics | Average |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **5** | S6 | Microelectronics | 86 | 45 | 75.50 |
+| **20** | S21 | Microelectronics | 68 | 51 | 68.50 |
+| **21** | S22 | Communication | 89 | 39 | 62.50 |
+| **25** | S26 | Instrumentation | 83 | 47 | 65.75 |
+
+---
 
 ---
 
@@ -171,7 +203,35 @@ print("  3. In the Hometown feature, the highest sample mean is in the category"
       highest_hometown['Hometown'], "with an average of", highest_hometown['Average'])
 ```
 
-**Output:** Three grouped-mean summary tables, a combined multi-index table, a single figure containing three side-by-side bar charts, and three printed statements naming the top-performing category for Track, Gender, and Hometown (exact categories and values depend on the contents of `board2.xlsx`).
+**Summary Tables Output:**
+
+**1. MEAN AVERAGE BY TRACK**
+| Track | Average |
+| :--- | :--- |
+| Communication | 67.975000 |
+| Instrumentation | 65.225000 |
+| Microelectronics | 67.500000 |
+
+**2. MEAN AVERAGE BY GENDER**
+| Gender | Average |
+| :--- | :--- |
+| Female | 66.616667 |
+| Male | 67.183333 |
+
+**3. MEAN AVERAGE BY HOMETOWN**
+| Hometown | Average |
+| :--- | :--- |
+| Luzon | 68.083333 |
+| Mindanao | 66.678571 |
+| Visayas | 65.750000 |
+
+**Printed Summary Output:**
+```text
+Highest Sample Mean
+  1. In the Track feature, the highest sample mean is in the category Communication with an average of 67.975
+  2. In the Gender feature, the highest sample mean is in the category Male with an average of 67.18333333333334
+  3. In the Hometown feature, the highest sample mean is in the category Luzon with an average of 68.08333333333333
+```
 
 ---
 
@@ -188,10 +248,15 @@ print("  3. In the Hometown feature, the highest sample mean is in the category"
 
 ## 🛠️ Prerequisites & Requirements
 
-* **Python 3.8+**
-* **Pandas:** Install via `pip install pandas`
-* **Matplotlib:** Install via `pip install matplotlib`
-* **Jupyter Notebook / JupyterLab**
+Ensure you have Python 3.8+ installed along with the required libraries:
+
+```bash
+pip install pandas matplotlib openpyxl
+```
+
+- **`pandas`**: Data manipulation and DataFrame filtering.
+- **`matplotlib`**: Data visualization and plot rendering.
+- **`openpyxl`**: Parsing `.xlsx` Excel spreadsheet files into Pandas DataFrames.
 
 ---
 
@@ -209,27 +274,19 @@ python ADPROG_PA4.py
 
 ### Using Jupyter Notebook
 
-1. Launch Jupyter Notebook:
-
-```bash
-jupyter notebook
-```
-
-2. Open `ADPROG_PA4.ipynb`.
-3. Execute all cells (`Cell` → `Run All`).
+1. Clone or download this repository.
+2. Ensure the dataset file `board2.xlsx` is placed in the root directory alongside your notebook (`.ipynb`) or Python file (`.py`).
+3. Launch Jupyter Notebook or VS Code:
+   ```bash
+   jupyter notebook
+   ```
+4. Open the notebook file and execute all cells sequentially from top to bottom (`Kernel` -> `Restart & Run All`).
 
 ---
 
 ## 🛡️ Key Constraints & Edge Cases Handled
 
-* **Dual-Condition Filtering:** Both filtering conditions (e.g., `Hometown` and `Track`, or `Hometown` and `Gender`) are applied to the source DataFrame **before** column subsetting, as required.
-* **Non-Destructive Secondary Filtering:** The `Average >= 60` filter on `VisFemale` is assigned to a new variable (`VisFemale_60`), leaving `VisFemale` unmodified.
-* **Category-wise Aggregation:** Uses `groupby(as_index=False)` so each summary table retains its category column instead of becoming an index.
-* **Unified Multi-Feature Comparison:** `pd.concat` with `keys=` produces one labeled table combining all three grouped-mean summaries.
-* **Single-Figure, Multi-Chart Layout:** All three bar charts are rendered as subplots within one `fig, axes` figure rather than as separate plots.
-* **Descriptive, Non-Causal Interpretation:** Findings are reported strictly as observed differences in sample means, explicitly avoiding causal claims.
-## README file Version History
-- September 9, 2026 - Upload .ipnyb file
-- September 9, 2026 - Upload README file
-
+- **Top Performing Track:** **Communication** achieved the highest overall board exam mean average (**67.97**), closely followed by Microelectronics (**67.50**).
+- **Gender Comparison:** Performance across genders remained closely balanced, with **Male** students averaging **67.18** compared to **Female** students at **66.62**.
+- **Regional Performance:** Students hailing from **Luzon** recorded the highest average score of **68.08**, outperforming Mindanao (**66.68**) and Visayas (**65.75**).
 
